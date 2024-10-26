@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Làm tròn điểm</h1>
+<input type="number" id="diemInput" placeholder="Nhập điểm" />
+<button onclick="tinhToan()">Tính điểm</button>
+
+<div id="result"></div>
+
+<script>
+  function lamTronDiem(diem) {
+    if (diem < 50) {
+      return diem;
+    }
+
+    let remainder = diem % 5;
+
+    if (remainder < 3) {
+      return diem - remainder;
+    } else {
+      return diem + (5 - remainder);
+    }
+  }
+
+  function tinhToan() {
+    const diem = parseInt(document.getElementById('diemInput').value);
+    if (isNaN(diem)) {
+      document.getElementById('result').innerText = "Vui lòng nhập một số hợp lệ!";
+      return;
+    }
+
+    const ketQua = lamTronDiem(diem);
+    document.getElementById('result').innerText = "Điểm sau khi làm tròn: " + ketQua;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tim boi chung va tinh tong</title>
+</head>
+<body>
+<script>
+    function findMultiplesAndSum(arr) {
+        const boichung = arr.filter(num => num % 3 === 0 && num % 5 === 0);
+        const tong = boichung.reduce((acc, curr) => acc + curr, 0);
+
+        console.log("Bội chung của 3 và 5 trong mảng là:", boichung);
+        console.log("Tổng các số bội chung của 3 và 5 là:", tong);
+    }
+    const arr = [];
+    const n = prompt("Nhập số lượng phần tử trong mảng (tối đa 20):");
+    const limit = Math.min(n, 20);
+    for (let i = 0; i < limit; i++) {
+        const num = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`));
+        arr.push(num);
+    }
+
+    findMultiplesAndSum(arr);
+</script>
+</body>
+</html>

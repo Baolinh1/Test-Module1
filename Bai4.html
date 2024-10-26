@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý khách hàng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      display: block;
+    }
+    table {
+      color: red;
+      background: #dddddd;
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Quản lý khách hàng</h1>
+
+<input type="text" id="maKhachHang" placeholder="Mã khách hàng" />
+<input type="text" id="tenKhachHang" placeholder="Tên khách hàng" />
+<input type="text" id="soDienThoai" placeholder="Số điện thoại" />
+<input type="text" id="diaChi" placeholder="Địa chỉ" />
+<input type="email" id="email" placeholder="Email" />
+<button onclick="themKhachHang()">Thêm khách hàng</button>
+
+<h2>Danh sách khách hàng</h2>
+<table id="customerTable">
+  <tr>
+    <th>Mã khách hàng</th>
+    <th>Tên khách hàng</th>
+    <th>Số điện thoại</th>
+    <th>Địa chỉ</th>
+    <th>Email</th>
+  </tr>
+</table>
+
+<script>
+  const danhSachKhachHang = [];
+
+  function themKhachHang() {
+    const maKhachHang = document.getElementById('maKhachHang').value;
+    const tenKhachHang = document.getElementById('tenKhachHang').value;
+    const soDienThoai = document.getElementById('soDienThoai').value;
+    const diaChi = document.getElementById('diaChi').value;
+    const email = document.getElementById('email').value;
+
+    if (!maKhachHang || !tenKhachHang || !soDienThoai || !diaChi || !email) {
+      alert("Vui lòng điền đầy đủ thông tin!");
+      return;
+    }
+
+    const khachHang = {
+      maKhachHang,
+      tenKhachHang,
+      soDienThoai,
+      diaChi,
+      email
+    };
+
+    danhSachKhachHang.push(khachHang);
+    hienThiKhachHang();
+    resetForm();
+  }
+
+  function hienThiKhachHang() {
+    const tbody = document.querySelector('#customerTable tbody');
+    tbody.innerHTML = ''; // Xóa nội dung cũ
+
+    danhSachKhachHang.forEach(khachHang => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+                    <td>${khachHang.maKhachHang}</td>
+                    <td>${khachHang.tenKhachHang}</td>
+                    <td>${khachHang.soDienThoai}</td>
+                    <td>${khachHang.diaChi}</td>
+                    <td>${khachHang.email}</td>
+                `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function resetForm() {
+    document.getElementById('maKhachHang').value = '';
+    document.getElementById('tenKhachHang').value = '';
+    document.getElementById('soDienThoai').value = '';
+    document.getElementById('diaChi').value = '';
+    document.getElementById('email').value = '';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function Cap_so_chia_het_cho_K(arr, k) {
+    let count = 0;
+    const n = arr.length;
+
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        if ((arr[i] + arr[j]) % k === 0) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  const arr = [1, 2, 3, 4, 5, 6];
+  const k = 5;
+  const result = Cap_so_chia_het_cho_K(arr, k);
+  console.log(`Số cặp có tổng chia hết cho ${k} là: ${result}`);
+
+</script>
+</body>
+</html>
